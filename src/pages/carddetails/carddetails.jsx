@@ -13,21 +13,25 @@ function CardDetails() {
 
 
 
-  const handleDelete = (id) => {
+  /*const handleDelete = (id) => {
     setAccount(accounts.filter((installment) => installment.id !== id));
-  };
+  };*/
 
   async function deleteAccount(idAccount){
+    
+    console.log("URL:", `/cards/${id}/accounts/${idAccount}`);
+    console.log("Card ID:", id); // Certifique-se de que o ID do cartão está correto
+    console.log("Account ID:", idAccount); // Certifique-se de que o ID da conta está correto
 
     try{
-
-        await api.delete(`/cards/${id}/${idAccount}`)
-
+        
+        await api.delete(`/cards/${id}/accounts/${idAccount}`)
+        getAccounts()
     } catch (error){
         console.error("Erro ao buscar detalhes do cartão ou deletar conta", error);
     }
 
-    getAccounts()
+   
 
   }
 
@@ -48,7 +52,7 @@ function CardDetails() {
     }
   }, []);
 
-  
+
   return (
     <div className="container">
       <h1 className="title">{title}</h1>
@@ -72,7 +76,7 @@ function CardDetails() {
             <div className="buttonDelete">
               <button
                 className="deleteButton"
-                onClick={() => handleDelete(account._id)}
+                onClick={() => deleteAccount(account._id)}
               >
                 <img src={Trash} width={20} height={20} alt="Deletar" />
               </button>
