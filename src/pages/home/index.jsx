@@ -50,9 +50,11 @@ function Home() {
 
   }
 
-  async fuction deleteCard(id){
+  async function deleteCard(id){
 
-    
+    await api.delete(`/cards/${id}`)
+
+    getCards()
 
   }
 
@@ -88,7 +90,7 @@ function Home() {
                 <p><span>  {card.title} </span></p>
                 <p><span> {card.date} </span></p>
                 </div>
-                <button><img src={Trash} width={20} height={20}/>    </button>
+                <button><img src={Trash} width={20} height={20} onClick={() => deleteCard(card._id)} />    </button>
                 <button><img src={Pincel} width={20} height={20}/>   </button> 
               </div>
 
