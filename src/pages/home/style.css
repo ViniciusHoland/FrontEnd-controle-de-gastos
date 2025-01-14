@@ -11,7 +11,7 @@
 
 /* Título */
 h1 {
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   font-size: 2rem;
 }
 
@@ -20,7 +20,7 @@ form {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 
 .form-input {

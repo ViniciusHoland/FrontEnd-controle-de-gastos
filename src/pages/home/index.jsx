@@ -86,7 +86,7 @@ function Home() {
 
           {cards.map(( card ) => (
 
-            <Link to={`/cards/${card._id}`}  key={card._id} className="card-link"> 
+            <Link to={`/cards/${card._id}`}  key={card._id} className="card-link" state={{ id: card._id , title: card.title}}> 
               <div className="cards">
                 <div>
                   <p><span>  {card.title} </span></p>

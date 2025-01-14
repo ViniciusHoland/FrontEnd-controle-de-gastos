@@ -1,54 +1,109 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  background-color: #2b6767;
+  color: #fff;
+  font-family: Arial, sans-serif;
+}
+
+/* Contêiner principal */
 .container {
-    padding: 20px;
-    background-color: #2b6767;
-    color: #fff;
-  }
-  
-  .title {
-    text-align: left;
-    margin-bottom: 20px;
-  }
-  
-  .form {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-  
-  .input {
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-  }
-  
-  .addButton {
-    padding: 10px 20px;
-    border-radius: 5px;
-    background-color: #3ba99c;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .card {
-    display: flex;
-    justify-content: space-between;
-    background-color: #3ba99c;
-    padding: 20px;
-    margin-bottom: 10px;
-    border-radius: 10px;
-  }
-  
-  .column {
-    flex: 1;
-    text-align: center;
-  }
-  
-  .deleteButton {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: 18px;
-    color: #fff;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh; /* Altura proporcional à tela */
+  padding: 20px;
+}
+
+/* Título */
+.title {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+/* Formulário */
+.form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  justify-content: center;
+}
+
+.input {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  flex: 1; /* Ocupa espaço proporcional */
+  max-width: 150px; /* Limita o tamanho */
+}
+
+.addButton {
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #3ba99c;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+/* Seção de contas */
+.accounts {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  align-items: center;
+  overflow: hidden; /* Remove rolagem */
+}
+
+/* Conta */
+.account {
+  display: flex;
+  flex-direction: column;
+  background-color: #3ba99c;
+  padding: 20px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 600px; /* Define largura máxima */
+  text-align: center;
+}
+
+.account-title {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+/* Parcelas */
+.installments {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card {
+  display: flex;
+  justify-content: space-between;
+  background-color: #2b6767;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.column {
+  flex: 1;
+  text-align: center;
+}
+
+.deleteButton {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
