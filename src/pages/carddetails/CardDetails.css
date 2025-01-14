@@ -102,8 +102,27 @@ html, body {
   text-align: center;
 }
 
-.deleteButton {
-  background: transparent;
-  border: none;
-  cursor: pointer;
+.account {
+  position: relative;
+}
+
+.buttonDelete {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none; /* Remove o fundo */
+  border: none; /* Remove a borda */
+  padding: 0; /* Remove o espaçamento interno */
+  cursor: pointer; /* Mostra o cursor de clique */
+}
+
+.buttonDelete img {
+  display: block; /* Garante que a imagem ocupe apenas seu próprio espaço */
+  width: 20px; /* Ajuste o tamanho da imagem, se necessário */
+  height: 20px; /* Ajuste o tamanho da imagem, se necessário */
+}
+
+.buttonDelete:hover img {
+  transform: scale(1.1); /* Efeito de destaque ao passar o mouse */
+  transition: transform 0.2s ease; /* Suaviza o efeito */
 }

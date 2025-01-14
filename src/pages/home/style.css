@@ -1,8 +1,26 @@
+/* Reset geral */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", serif;
+}
+
+
+body {
+  min-height: 100vh;
+  width: 100vw;
+  background: linear-gradient(180deg, #318572 0%, rgba(49, 149, 177, 0.8) 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* Container principal */
-.container {
+.containerHome {
   max-width: 600px;
-  margin: auto;
-  padding: 30px 20px;
+  width: 90%; /* Para telas menores */
+  padding: 30px; /* Aumentado para melhor espaçamento interno */
   background-color: #004c4c;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
@@ -10,21 +28,22 @@
 }
 
 /* Título */
-h1 {
-  margin-bottom: 10px;
-  font-size: 2rem;
+.containerHome h1 {
+  margin-bottom: 20px; /* Espaço maior abaixo do título */
+  font-size: 2.5rem;
+  color: white;
 }
 
 /* Formulário */
 form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  margin-bottom: 10px;
+  gap: 15px; /* Espaçamento maior entre os inputs */
+  margin-bottom: 30px; /* Espaço maior antes dos cartões */
 }
 
 .form-input {
-  padding: 10px;
+  padding: 12px; /* Inputs maiores */
   font-size: 1rem;
   border: 1px solid #38a1db;
   border-radius: 5px;
@@ -38,7 +57,7 @@ form {
 
 .form-button {
   padding: 12px;
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: bold;
   background-color: #38a1db;
   color: white;
@@ -52,17 +71,16 @@ form {
   background-color: #70d6ff;
 }
 
-
 /* Cartões */
 .cards {
   display: flex;
   align-items: center;
   justify-content: space-between;
   background-color: #38a1db;
-  padding: 15px;
-  margin-bottom: 15px;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  padding: 15px; /* Ajustado para melhor espaçamento interno */
+  margin-bottom: 15px; /* Espaçamento consistente entre cartões */
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   color: white;
 }
 
@@ -84,4 +102,10 @@ form {
 
 .cards button:hover {
   transform: scale(1.1);
+}
+
+.card-link {
+  text-decoration: none;
+  color: inherit;
+  margin: 8px 0; /* Controla o espaço entre os links */
 }
