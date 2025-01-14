@@ -1,14 +1,24 @@
-*{
+/* Estilo global */
+/* Fundo do corpo */
+body {
   margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", serif;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom, #083759, #38a1db);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-body{
 
-  min-height: 100vh;
-  width: 100vw;
-  background: linear-gradient(180deg, #318572 0%, rgba(49, 149, 177, 0.8) 100%);
+/* Links globais */
+a {
+  text-decoration: none;
+  color: inherit;
+}
 
+/* Reset de margens */
+h1, p {
+  margin: 0;
 }

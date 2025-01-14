@@ -3,6 +3,7 @@ import Trash from '../../assets/trash.png'
 import Pincel from '../../assets/pincel.png'
 import api from '../../services/api'
 import { useEffect, useState, useRef } from "react";
+import { Link } from "react-router-dom"
 
 function Home() {
 
@@ -84,15 +85,17 @@ function Home() {
             </form>
 
           {cards.map(( card ) => (
-            
-            <div key={card._id} className="cards">
-              <div>
-                <p><span>  {card.title} </span></p>
-                <p><span> {card.date} </span></p>
+
+            <Link to={`/cards/${card._id}`}  key={card._id} className="card-link"> 
+              <div className="cards">
+                <div>
+                  <p><span>  {card.title} </span></p>
+                  <p><span> {card.date} </span></p>
+                  </div>
+                  <button><img src={Trash} width={20} height={20} onClick={(e) => {e.preventDefault() ; deleteCard(card._id)}} />    </button>
+                  <button><img src={Pincel} width={20} height={20}/>   </button> 
                 </div>
-                <button><img src={Trash} width={20} height={20} onClick={() => deleteCard(card._id)} />    </button>
-                <button><img src={Pincel} width={20} height={20}/>   </button> 
-              </div>
+            </Link>
 
           ))}
       

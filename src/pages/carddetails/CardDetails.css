@@ -1,0 +1,54 @@
+.container {
+    padding: 20px;
+    background-color: #2b6767;
+    color: #fff;
+  }
+  
+  .title {
+    text-align: left;
+    margin-bottom: 20px;
+  }
+  
+  .form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .input {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+  }
+  
+  .addButton {
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #3ba99c;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .card {
+    display: flex;
+    justify-content: space-between;
+    background-color: #3ba99c;
+    padding: 20px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+  }
+  
+  .column {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .deleteButton {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: #fff;
+  }
+  
