@@ -7,6 +7,11 @@ import { Link } from "react-router-dom";
 
 function Home() {
   const [cards, setCards] = useState([]);
+  const [title, setTitle] = useState("")
+  const [date, setDate] = useState("")
+  const [isEditing, setIsEditing] = useState(false)
+  const [editingCardId, setEditingCardId] = useState(null); // ID do card em edição
+
 
   const inputTitle = useRef();
   const inputDate = useRef();
@@ -47,6 +52,33 @@ function Home() {
     }
   }
 
+  const saveCard = () => {
+    if(!editingCardId) return; 
+
+    const update = {title, date}
+    updateCard(editingCardId, update.title, update.date)
+
+    getCards()
+
+  }
+
+  async function updateCard(idCard, titleEdit, dateEdit){
+
+    try{
+
+      const title = titleEdit
+      const date = Number(dateEdit)
+
+      await api.put(`/cards/${idCard}`, {title, date})
+
+      console.log("card editado com sucesso")
+    } catch (error){
+      console.error("não foi possivel editar card", error)
+    }
+
+    getCards()
+  }
+
   async function deleteCard(id) {
     await api.delete(`/cards/${id}`);
 
@@ -67,16 +99,35 @@ function Home() {
             placeholder="Título"
             className="form-input"
             ref={inputTitle}
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
           />
           <input
             type="number"
             placeholder="Data de Vencimento"
             className="form-input"
             ref={inputDate}
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
           />
-          <button type="button" className="form-button" onClick={createdCard}>
-            Cadastrar
-          </button>
+
+          {isEditing ? (
+                <button
+                type="button"
+                className="form-button"
+                onClick={() => {
+                  saveCard(); // Função para salvar as mudanças
+                  setIsEditing(false); // Sai do modo de edição após salvar
+                  }}
+                >
+                Salvar
+              </button>
+            ) : (
+              <button type="button" className="form-button" onClick={createdCard}>
+                Cadastrar
+              </button> 
+          )}
+      
         </form>
 
         <div className="cards-container">
@@ -106,7 +157,13 @@ function Home() {
                     <img src={Trash} alt="Deletar" width={20} height={20} />
                   </button>
                   <button>
-                    <img src={Pincel} alt="Editar" width={20} height={20} />
+                    <img src={Pincel} alt="Editar" width={20} height={20} onClick={(e) => { e.preventDefault(); 
+                      setTitle(card.title);
+                       setDate(card.date);
+                      setIsEditing(true);
+                      setEditingCardId(card._id)
+                       }} />
+          
                   </button>
                 </div>
               </div>

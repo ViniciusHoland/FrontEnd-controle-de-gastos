@@ -109,3 +109,9 @@ form {
   color: inherit;
   margin: 8px 0; /* Controla o espaço entre os links */
 }
+
+.cards:hover{
+
+  background-color: #70d6ff;
+
+}
