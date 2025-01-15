@@ -5,22 +5,26 @@
   box-sizing: border-box;
 }
 
-html, body {
-  height: 100%;
-  background-color: #2b6767;
-  color: #fff;
-  font-family: Arial, sans-serif;
-}
-
-/* Contêiner principal */
+/* Ajuste para permitir rolagem */
 .container {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start; /* Conteúdo começará do topo */
   align-items: center;
-  height: 100vh; /* Altura proporcional à tela */
+  min-height: 100vh; /* Altere para min-height */
   padding: 20px;
+  overflow-y: auto; /* Adiciona rolagem vertical */
 }
+
+/* Para garantir que o corpo permita rolagem */
+html, body {
+  height: auto;
+  background-color: #2b6767;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  overflow-y: scroll; /* Habilita a rolagem no corpo */
+}
+
 
 /* Título */
 .title {
