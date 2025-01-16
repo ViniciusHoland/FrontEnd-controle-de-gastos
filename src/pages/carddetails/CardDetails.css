@@ -130,3 +130,29 @@ html, body {
   transform: scale(1.1); /* Efeito de destaque ao passar o mouse */
   transition: transform 0.2s ease; /* Suaviza o efeito */
 }
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.total-next-due {
+  text-align: right;
+  background-color: #3ba99c;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.total-next-due p {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.total-next-due h2 {
+  font-size: 18px;
+  font-weight: bold;
+}
