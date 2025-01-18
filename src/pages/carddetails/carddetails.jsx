@@ -7,7 +7,7 @@ import api from "../../services/api";
 
 function CardDetails() {
   const location = useLocation(); // pega o estado passado pelo link
-  const { id, title } = location.state || {}; // pegar o titulo do estado ou vazio se cao não tiver
+  const { id, title } = location.state || {}; // pegar o titulo do estado ou vazio se caso não tiver
 
   const [accounts, setAccount] = useState([]);
   const [card, setCard] = useState(null);
@@ -24,20 +24,16 @@ function CardDetails() {
 
   async function createdAccount() {
     try {
-      let amount = parseFloat(inputAmount.current.value)
+      let amount = parseFloat(inputAmount.current.value);
       let description = inputDescription.current.value;
-      let parcel = parseInt(inputParcel.current.value)
-      let currentMonth = inputCurrentMonth.current.value;
+      let parcel = parseInt(inputParcel.current.value);
 
-      
+      const isChecked = inputCurrentMonth.current.checked;
+      console.log("Checkbox está marcado:", isChecked);
 
-      if (currentMonth === "marcado") {
-        currentMonth = "true";
-      } else {
-        currentMonth = "false";
-      }
+      const currentMonth = isChecked;
 
-      console.log(currentMonth)
+      console.log(currentMonth);
 
       const response = await api.post(`/cards/${id}/accounts`, {
         description,
@@ -47,7 +43,7 @@ function CardDetails() {
       });
       console.log(response.data);
       getAccounts();
-      getCard()
+      getCard();
     } catch (error) {
       console.error("error ao criar conta", error);
     }
@@ -57,7 +53,7 @@ function CardDetails() {
     try {
       await api.delete(`/cards/${id}/accounts/${idAccount}`);
       getAccounts();
-      getCard()
+      getCard();
     } catch (error) {
       console.error(
         "Erro ao buscar detalhes do cartão ou deletar conta",
@@ -72,37 +68,32 @@ function CardDetails() {
 
       const parcels = response.data.accounts || [];
       setAccount(parcels); // Atualiza o estado com o array de parcelas
-      getCard()
+      getCard();
     } catch (error) {
       console.error("Erro ao buscar detalhes do cartão:", error);
     }
   }
 
-  async function getCard(){
-
-    try{
-      const response = await api.get(`/cards/${id}`)
-      setCard(response.data)
-      setTotalNextDue(response.data.totalNextDue)
-     
-    }
-    catch (error){
+  async function getCard() {
+    try {
+      const response = await api.get(`/cards/${id}`);
+      setCard(response.data);
+      setTotalNextDue(response.data.totalNextDue);
+    } catch (error) {
       console.error("Erro ao buscar os dados do cartão:", error);
     }
-
   }
 
- 
   useEffect(() => {
     if (id) {
       getAccounts();
-      getCard()
+      getCard();
     }
   }, []);
 
   return (
     <div className="container">
-        <div className="header">
+      <div className="header">
         <h1 className="title">{title}</h1>
         <div className="total-next-due">
           <p>Total da Próxima Fatura:</p>
@@ -151,27 +142,47 @@ function CardDetails() {
                 <img src={Trash} width={20} height={20} alt="Deletar" />
               </button>
             </div>
+
             <div className="installments">
-              {account.parcels.map((parcel) => (
-                <div key={parcel._id} className="card">
-                  <div className="column">
-                    <h3>Parcelas</h3>
-                    <p>{parcel.parcel}</p>
+              {account.parcels.map((parcel) => {
+                // Função para converter data do formato DD/MM/YYYY para YYYY-MM-DD
+                const convertDate = (dateString) => {
+                  const [day, month, year] = dateString.split("/"); // Dividir pela "/"
+                  return `${year}-${month}-${day}`; // Reorganizar no formato ISO
+                };
+
+                // Verificar se a data da parcela já passou
+                const dueDate = new Date(convertDate(parcel.dueDate));
+                const today = new Date();
+                const isOverdue = dueDate < today; // Parcela vencida
+
+                return (
+                  <div
+                    key={parcel._id}
+                    className="card"
+                    style={{
+                      backgroundColor: isOverdue ? "#afcca8" : "#2b6767", // Vermelho se vencida
+                    }}
+                  >
+                    <div className="column">
+                      <h3>Parcelas</h3>
+                      <p>{parcel.parcel}</p>
+                    </div>
+                    <div className="column">
+                      <h3>Valor</h3>
+                      <p>{`R$ ${parcel.parcelAmount}`}</p>
+                    </div>
+                    <div className="column">
+                      <h3>Vencimento</h3>
+                      <p>{parcel.dueDate}</p>
+                    </div>
+                    <div className="column">
+                      <h3>Descrição</h3>
+                      <p>{parcel.description}</p>
+                    </div>
                   </div>
-                  <div className="column">
-                    <h3>Valor</h3>
-                    <p>{`R$ ${parcel.parcelAmount}`}</p>
-                  </div>
-                  <div className="column">
-                    <h3>Vencimento</h3>
-                    <p>{parcel.dueDate}</p>
-                  </div>
-                  <div className="column">
-                    <h3>Descrição</h3>
-                    <p>{parcel.description}</p>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         ))}

@@ -80,7 +80,14 @@ function Home() {
   }
 
   async function deleteCard(id) {
-    await api.delete(`/cards/${id}`);
+    
+
+    if(confirm("Deseja excluir o cartão? ")){
+      await api.delete(`/cards/${id}`);
+    } else {
+      return
+    }
+    
 
     getCards();
   }
@@ -138,6 +145,7 @@ function Home() {
               className="card-link"
               state={{ id: card._id, title: card.title }}
             >
+         
               <div className="cards">
                 <div className="card-info">
                   <p>
